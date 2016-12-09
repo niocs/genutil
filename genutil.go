@@ -3853,3 +3853,47 @@ func Red(in string) (out string) {
 func RedBold(in string) (out string) {
 	return "\033[1;31m" + in + "\033[0m"
 }
+//===============================================================================
+
+// Check checks the error, panics if not nil
+func Check(err error){
+
+        if err != nil { panic(err) }
+}
+
+// CompileRegexp compiles the regular expression for given input string
+func CompileRegexp(strRegexp string) *regexp.Regexp {
+
+        return regexp.MustCompile(strRegexp)
+}
+
+// ContainsRegexp checks the given regexp is present in given string or not
+func ContainsRegexp(strInput string, r *regexp.Regexp) bool {
+
+        flag            := false
+        strFields       := strings.Fields(strInput)
+
+        for i, _ := range strFields {
+
+                if r.MatchString(strFields[i]) { flag = true; break; }
+        }
+
+return flag
+}
+// HasValidCLI checks the validity of required no. of arguments to run program
+func HasValidCLI(Args []string, maxNo int, msg string) bool {
+
+        if (len(Args) == 1) || (len(Args) > maxNo) { 
+                Usage(msg)
+                return false
+        }
+
+        return true
+}
+
+// Usage prints the Usage.
+func Usage(msg string) {
+
+        fmt.Println("\n Usage: \n",os.Args[0], msg);
+} 
+//================================================================================
