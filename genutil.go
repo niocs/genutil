@@ -3880,4 +3880,20 @@ func ContainsRegexp(strInput string, r *regexp.Regexp) bool {
 
 return flag
 }
+// HasValidCLI checks the validity of required no. of arguments to run program
+func HasValidCLI(Args []string, maxNo int, msg string) bool {
+
+        if (len(Args) == 1) || (len(Args) > maxNo) { 
+                Usage(msg)
+                return false
+        }
+
+        return true
+}
+
+// Usage prints the Usage.
+func Usage(msg string) {
+
+        fmt.Println("\n Usage: \n",os.Args[0], msg);
+} 
 //================================================================================
